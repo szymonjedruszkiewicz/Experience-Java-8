@@ -3,6 +3,7 @@ package academy.elqoo.java8.stream;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -237,7 +238,7 @@ public class StreamTest {
 
     @Test
     public void shouldBeEmptyStream(){
-        Stream<Integer> numberStream =null; //create empty stream
+        Stream<Integer> numberStream = Stream.empty(); //create empty stream
         assertNotNull(numberStream);
     }
 
@@ -256,7 +257,16 @@ public class StreamTest {
     @Test
     public void shouldCollectToString(){
         String sample = "Working with Java8 Streams";
-        String result = sample.chars().mapToObj(a -> ((char) a)).collect(new CharacterToStringCollector());
+//        String result = sample.chars()
+//                .mapToObj(a -> ((char) a))
+//                .collect(new CharacterToStringCollector());
+
+        String result = sample.chars()
+                .mapToObj(c -> ((char) c))
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+
         assertThat(sample,equalTo(result));
     }
 }
