@@ -1,11 +1,7 @@
 package academy.elqoo.java8.stream;
 
 
-import com.sun.deploy.util.StringUtils;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -122,9 +118,8 @@ public class Stream8 {
     }
 
     public static Map<Boolean, Long> countGender(List<User> users) {
-//        return users.stream()
-//                .collect(Collectors.groupingBy(u->u.isMale()), Collectors.counting());
-        return null;
+        return users.stream()
+                .collect(Collectors.groupingBy(User::isMale, Collectors.counting()));
     }
 
 
